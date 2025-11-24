@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sofia Wiese — Portfolio</title>
+  <style>
+    :root{
+      --purple-1:#f3e8ff;
+      --purple-2:#e8d6ff;
+      --purple-3:#caa6ff;
+      --accent:#9b6bff;
+      --text:#2b2b2b;
+      --muted:#5b5b5b;
+      --card:#fff;
+      --glass:rgba(255,255,255,0.6);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      background:var(--purple-1);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter:blur(8px);
+      background:linear-gradient(90deg,rgba(255,255,255,0.7),rgba(255,255,255,0.3));
+      border-bottom:1px solid rgba(0,0,0,0.05);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      padding:12px 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand img{
+      width:40px;
+      height:40px;
+      border-radius:8px;
+      object-fit:cover;
+      border:2px solid rgba(255,255,255,0.5);
+    }
+
+    nav{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    header a{
+      padding:6px 12px;
+      border-radius:8px;
+      font-weight:600;
+      font-size:14px;
+      color:var(--muted);
+      font-weight: bold;
+    }
+
+    header a:hover{
+      background:var(--accent);
+      color:#fff;
+      transition:0.3s;
+    }
+
+    main{
+      max-width:1100px;
+      margin:20px auto;
+      padding:0 16px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+      margin-bottom:24px;
+    }
+
+    .hero-photo{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      order:-1;
+    }
+
+    .photo-box{
+      width:100%;
+      max-width:100%;
+      aspect-ratio:4/3;
+      border-radius:12px;
+      overflow:hidden;
+      background:linear-gradient(180deg,var(--purple-3),var(--purple-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:4px solid rgba(255,255,255,0.35);
+    }
+
+    .photo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .photo-box:hover{
+      transform:scale(1.02);
+      transition: 0.3s;
+    }
+
+    .hero-left{
+      padding:24px;
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .hello{
+      font-size:42px;
+      font-weight:800;
+      color:var(--accent);
+    }
+
+    .name{
+      font-size:26px;
+      margin-top:6px;
+      font-weight:700;
+    }
+
+    .subtitle{
+      font-size:16px;
+      margin-top:8px;
+      color:var(--muted);
+    }
+
+    .about-block{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+      margin-bottom:24px;
+    }
+
+    .about-photo{
+      border-radius:12px;
+      overflow:hidden;
+      aspect-ratio:3/4;
+      background:linear-gradient(180deg,var(--purple-2),var(--purple-3));
+      box-shadow:0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .about-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .about-photo:hover{
+      transform:scale(1.02);
+      transition: 0.3s;
+    }
+
+    .about-card{
+      padding:20px;
+      background:var(--card);
+      border-radius:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      box-shadow:0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .about-title{
+      font-size:24px;
+      font-weight:800;
+    }
+
+    .about-sub{
+      font-size:16px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+
+    .about-text{
+      margin-top:12px;
+      line-height:1.55;
+      color:var(--text);
+      font-size:15px;
+    }
+
+    .skills{
+      padding:18px 12px;
+      border-radius:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.4));
+      box-shadow:0 6px 14px rgba(0,0,0,0.05);
+      margin-bottom:24px;
+      text-align:center;
+    }
+
+    .skills h2{
+      margin:6px 0;
+      font-size:24px;
+      text-transform:capitalize;
+    }
+
+    .skills p{
+      display:block;
+      margin:6px 0 12px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .skill-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    .skill{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--glass);
+      border:1px solid rgba(0,0,0,0.06);
+      transition:0.3s;
+    }
+
+    .skill:hover{
+      transform:scale(1.1);
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .skill img{
+      width:60%;
+      height:60%;
+      object-fit:contain;
+    }
+
+    .small-line{
+      height:1px;
+      background:rgba(0,0,0,0.06);
+      margin:20px auto;
+      width:70%;
+    }
+
+    .extra{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      justify-content:center;
+      margin-top:12px;
+    }
+
+    .flag{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--card);
+      border:1px solid rgba(0,0,0,0.05);
+      transition:0.3s;
+    }
+
+    .flag:hover{
+      transform:scale(1.1);
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .flag img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+    }
+
+    #contact{
+      background:linear-gradient(180deg,#efe5ff,#ead8ff);
+      padding:24px;
+      border-radius:12px;
+      text-align:center;
+      box-shadow:0 6px 14px rgba(0,0,0,0.05);
+    }
+
+    .contact-card{
+      max-width:520px;
+      margin:0 auto;
+    }
+
+    .contact-card h2{
+      font-size:24px;
+    }
+
+    .insta-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,0.06);
+      font-weight:700;
+      font-size:15px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .insta-btn:hover{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .insta-btn img{
+      width:20px;
+      height:20px;
+    }
+
+    footer{
+      text-align:center;
+      padding:18px;
+      margin-top:20px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    footer a{
+      color:var(--accent);
+      font-weight:600;
+    }
+
+    @media (min-width: 768px) {
+        header {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 12px 40px;
+        }
+
+        .brand {
+            flex-direction: row;
+        }
+
+        nav {
+            flex-wrap: nowrap;
+            gap: 16px;
+        }
+
+        nav a {
+            font-size: 15px;
+            padding: 8px 14px;
+        }
+
+        main {
+            margin: 28px auto;
+        }
+
+        .hero {
+            grid-template-columns: 1fr 360px;
+            align-items: center;
+        }
+        
+        .hero-photo {
+            order: 0;
+        }
+
+        .photo-box {
+            max-width: 360px;
+        }
+
+        .photo-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .hello {
+            font-size: 56px;
+        }
+
+        .name {
+            font-size: 32px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+        }
+
+        .about-block {
+            grid-template-columns: 320px 1fr;
+        }
+
+        .about-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .about-title {
+            font-size: 28px;
+        }
+
+        .about-sub {
+            font-size: 18px;
+        }
+
+        .skills h2 {
+            font-size: 28px;}
+        }
+
+        .skill {
+            width: 72px;
+            height: 72px;
+        }
+
+        .flag {
+            width: 72px;
+            height: 72px;
+        }
+
+        .small-line {
+            width: 60%;
+            margin: 26px auto;
+        }
+
+        #contact {
+            padding: 28px;
+        }
+
+        .contact-card h2 {
+            font-size: 28px;
+        }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo_s.png" alt="Logo" />
+      <a href="https://www.instagram.com/wiese.sofia/">Sofia Wiese</a>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About me</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact me</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h1 class="hello">Hello,</h1>
+        <h2 class="name">I'm Sofia Wiese</h2>
+        <div class="subtitle">Estudante do 1º ano do Ensino Médio</div>
+      </div>
+
+      <div class="hero-photo">
+        <div class="photo-box">
+          <img src="foto-deitada.jpeg" alt="Foto Sofia" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-block">
+      <div class="about-photo">
+        <img src="foto-empe.jpeg" alt="Foto Sofia" />
+      </div>
+      <div class="about-card">
+        <div>
+          <h3 class="about-title">About me</h3>
+          <div class="about-sub">Quem sou eu?</div>
+          <p class="about-text">
+            Nasci na cidade de Curitiba, capital do Paraná, onde morei por 7 anos. 
+            Depois, me mudei para Lins, uma cidade no interior de São Paulo, e vivi lá até meus 14 anos, 
+            quando me formei no 9º ano. Então, me mudei para a FAP, onde moro hoje, 
+            para cursar o meu ensino médio com técnico em informática.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills">
+      <h2>Skills</h2>
+      <p>Minhas habilidades</p>
+
+      <div class="skill-grid">
+        <div class="skill"><img src="https://tse3.mm.bing.net/th/id/OIP.fzTb3anrVIUP1PbHsnBRUAHaHa?w=1024&h=1024&rs=1&pid=ImgDetMain&o=7&rm=3" alt="HTML"></div>
+        <div class="skill"><img src="https://tse3.mm.bing.net/th/id/OIP.66yjiiQ0O_D0KSekpe1N1QHaHa?w=2400&h=2400&rs=1&pid=ImgDetMain&o=7&rm=3" alt="CSS"></div>
+        <div class="skill"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/1200px-The_GIMP_icon_-_gnome.svg.png" alt="GIMP"></div>
+        <div class="skill"><img src="https://www.swiftpublisher.com/assets/img/articles/dtp-list/scribus-icon@2x.png" alt="Scribus"></div>
+        <div class="skill"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Inkscape_logo_2.svg/1024px-Inkscape_logo_2.svg.png" alt="Inkscape"></div>
+        <div class="skill"><img src="https://tse1.mm.bing.net/th/id/OIP.3ihQbuMyx4bPNOKDH8TozgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="CapCut"></div>
+        <div class="skill"><img src="https://logos-world.net/wp-content/uploads/2020/03/Microsoft-Word-Logo-2013-2019.png" alt="Word"></div>
+        <div class="skill"><img src="https://logodownload.org/wp-content/uploads/2020/04/microsoft-powerpoint-logo-0.png" alt="PowerPoint"></div>
+        <div class="skill"><img src="https://logospng.org/download/visual-studio-code/visual-studio-code-4096.png" alt="VSCode"></div>
+        <div class="skill"><img src="https://th.bing.com/th/id/R.f12560820c5070ee4be83c3feb569ce1?rik=l9Xz9PiZqqnDJQ&pid=ImgRaw&r=0" alt="GitHub"></div>
+      </div>
+
+      <div class="small-line"></div>
+      <h3>Extra</h3>
+      <div class="extra">
+        <div class="flag" title="Brasil">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.YE6ElAcjqMLqc4TWuUvYyQHaFL?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Brasil">
+        </div>
+        <div class="flag" title="EUA">
+          <img src="https://tse2.mm.bing.net/th/id/OIP.UAboVWu9KrMpdrV5car2WgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="EUA">
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <h2>Contact me</h2>
+        <p style="color:var(--muted)">Entre em contato comigo!</p>
+        <p>
+          <a class="insta-btn" href="https://wa.me/5514981232824" target="_blank" rel="noopener noreferrer">
+            <img src="https://th.bing.com/th/id/R.35ffa6e353468280a59e5b4672b8aba0?rik=e5Y6Je9zOSfWrg&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f06%2fwhatsApp-logo-1.png&ehk=2kmD9AQIuBNDDrrdprGXc3ua6fK6W8wJ%2fiV0VbQhDsI%3d&risl=&pid=ImgRaw&r=0" alt="instagram" />
+            Meu número aqui!
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 - <a href="https://www.instagram.com/wiese.sofia/">@wiese.sofia</a></p>
+    </footer>
+  </main>
+</body>
+</html>
